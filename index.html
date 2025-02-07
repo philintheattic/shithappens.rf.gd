@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="msapplication-TileColor" content="#f9e4b6">
+    <meta name="theme-color" content="#f9e4b6">
+    <title>Shit Happens! v1</title>
+    <link rel="icon" type="image/png" href="assets/icon2.png">
+    <link rel="apple-touch-icon" href="http://shithappens.rf.gd/assets/icon2.png">
+    <link rel="manifest" href="assets/manifest.json">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/charts.umd.js"></script>
+</head>
+<body>
+    <h1>Shit Happens!💩</h1>
+
+    <!--Main Tab - Hier wird getrackt-->
+    <div id="tracking" class="tabcontent">
+        <button onclick="showBristolSelection()">Toilettengang protokollieren</button>
+
+        <div id="bristolSelection" class="selector hidden">
+            <p>Wie war der Stuhlgang?</p>
+            <button onclick="addEntry(1)">Typ 1</button>
+            <button onclick="addEntry(2)">Typ 2</button>
+            <button onclick="addEntry(3)">Typ 3</button>
+            <button onclick="addEntry(4)">Typ 4</button>
+            <button onclick="addEntry(5)">Typ 5</button>
+            <button onclick="addEntry(6)">Typ 6</button>
+            <button onclick="addEntry(7)">Typ 7</button>
+        </div>
+        <div>
+            <ul id="entryList"></ul>
+        </div>
+    </div>
+
+    <!--Stats Tab - Hier werden die Daten in hübsche Diagramme verpackt. WIP-->
+    <div id="stats" class="tabcontent">
+        <h2>Stats</h2>
+        <div class="stats-wrapper">
+            <canvas id="chart"></canvas>
+        </div>
+        <button onclick="updateChart(7)">7 Tage</button>
+        <button onclick="updateChart(30)">30 Tage</button>
+    </div>
+
+    <!--Info Tab - Hier kann man nachschlagen was die verschiedenen Typen bedeuten-->
+    <div id="info" class="tabcontent">
+        <h2>Die Bristol-Stuhlformen-Skala</h2>
+        <p>Nach der Bristol-Stuhlformen-Skala werden sieben Stuhltypen unterschieden, wobei die Passagezeit von Typ 1 (bis zu 100 Stunden) bis zu Typ 7 (etwa 10 Stunden) abnimmt:</p>
+        <li>Typ 1:
+            <br>Einzelne, feste Kügelchen
+            <br><img src="assets/bss_1.png"></li>
+        <li>Typ 2:
+            <br>Wurstartig, klumpig
+            <br><img src="assets/bss_2.png"></li>
+        <li>Typ 3:
+            <br>Wurstartig mit rissiger Oberfläche
+            <br><img src="assets/bss_3.png"></li>
+        <li>Typ 4:
+            <br>Wurstartig mit glatter Oberfläche
+            <br><img src="assets/bss_4.png"></li>
+        <li>Typ 5:
+            <br>Einzelne weiche, glattrandige Klümpchen
+            <br><img src="assets/bss_5.png"></li>
+        <li>Typ 6:
+            <br>Einzelne weiche Klümpchen mit unregelmäßigem Rand
+            <br><img src="assets/bss_6.png"></li>
+        <li>Typ 7:
+            <br>Flüssig, ohne feste Bestandteile
+            <br><img src="assets/bss_7.png"></li>
+        <p>Die Typen 1 und 2 weisen auf eine Verstopfung hin, die Typen 5 bis 7 auf Durchfall. Die Typen 3 und 4 gelten als „Idealstuhl“, der leicht auszuscheiden ist und auf keine Erkrankungen hinweist.</p>
+        <p>Quelle: <a href="https://de.wikipedia.org/wiki/Bristol-Stuhlformen-Skala" target="_blank">Wikipedia🔗</a></p>
+    </div>
+
+    <!--Settings Tab - Hier kann man vers Einstellungen vornehmen-->
+    <div id="settings" class="tabcontent">
+        <h2>Einstellungen</h2>
+        <h3>Daten Import/Export</h3>
+        <button onclick="exportToJson()">Export to JSON</button>
+        <button onclick="document.getElementById('importFile').click()">Import from JSON</button>
+
+        <!--Fileinput needed for the import function but not needed in UI so keep it hidden--> 
+        <input type="file" id="importFile" accept=".json" onchange="importFromJson(event)" style="Display: none;">
+    </div>
+
+    <!--Das ist die Navigationsleiste am unteren Bildschirmrand-->
+    <div class="nav">
+        <button class="tablinks active" onclick="openTab(event, 'tracking')" id="defaultOpen" >Tracking</button>
+        <button class="tablinks" onclick="openTab(event, 'stats')">Stats</button>
+        <button class="tablinks" onclick="openTab(event, 'info')">Info</button>
+        <button class="tablinks" onclick="openTab(event, 'settings')">Settings</button>
+    </div>
+
+    <!--Main-Skript wird hier erst geladen, damit alle DOM Elemente in JS sichtbar sind-->
+    <script src="js/main.js"></script> 
+</body>
+</html>
