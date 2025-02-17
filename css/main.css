@@ -92,7 +92,7 @@ ul {
 
 
 /* CSS */
-button {
+button, label {
   align-items: center;
   appearance: none;
   background-color: var(--secondary-color);
@@ -126,7 +126,7 @@ button {
   z-index: 0;
 }
 
-button:hover {
+button:hover ,label:hover{
   background: #F6F9FE;
   color: #174ea6;
 }
@@ -235,4 +235,8 @@ button:disabled {
 
 canvas{
   max-height: 100%;
+}
+
+#canvas{
+  background-color: transparent;
 }
