@@ -13,6 +13,7 @@
     <link rel="manifest" href="assets/manifest.json">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/charts.umd.js"></script>
+    <script src="js/confetti.js"></script>
 </head>
 <body>
     <h1>Shit Happens!💩</h1>
@@ -26,7 +27,7 @@
             <button onclick="addEntry(1)">Typ 1</button>
             <button onclick="addEntry(2)">Typ 2</button>
             <button onclick="addEntry(3)">Typ 3</button>
-            <button onclick="addEntry(4)">Typ 4</button>
+            <button onclick="addEntry(4); launchConfetti()">Typ 4</button>
             <button onclick="addEntry(5)">Typ 5</button>
             <button onclick="addEntry(6)">Typ 6</button>
             <button onclick="addEntry(7)">Typ 7</button>
@@ -78,12 +79,18 @@
     <!--Settings Tab - Hier kann man vers Einstellungen vornehmen-->
     <div id="settings" class="tabcontent">
         <h2>Einstellungen</h2>
+        <!-- Import/Export Funktionen -->
         <h3>Daten Import/Export</h3>
         <button onclick="exportToJson()">Export to JSON</button>
         <button onclick="document.getElementById('importFile').click()">Import from JSON</button>
-
         <!--Fileinput needed for the import function but not needed in UI so keep it hidden--> 
         <input type="file" id="importFile" accept=".json" onchange="importFromJson(event)" style="Display: none;">
+
+        <h3>Animationen</h3>
+        <!-- Schaltet Konfetti Animation ein oder aus -->
+        <label>
+            <input type="checkbox" id="confettiToggle">Konfetti an/aus
+        </label>
     </div>
 
     <!--Das ist die Navigationsleiste am unteren Bildschirmrand-->
