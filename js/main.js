@@ -6,6 +6,15 @@ function updateChart(days){
   loadEntries();
 }
 
+// Register a serviceworker that updates the app automatically when files are updated on the server
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js").then((registration) => {
+    console.log("Service Worker registered with scope:", registration.scope);
+  }).catch((error) => {
+    console.error("Service Worker registration failed:", error);
+  });
+}
+
 
 // CODE FOR THE MAIN FUNCTIONALITY. SAVING ENTRIES AND DISPLAYING THEM ON THE SCREEN
 // Speichert die eingetragenen Toilettengänge im Localstorage
@@ -50,7 +59,7 @@ function loadEntries() {
     // computes the average bristol type per day
     var averageBristol = Object.values(bristolData)[0].reduce((sum, value) => {return sum + value}, 0) / Object.values(bristolData)[0].length;
     
-    console.log(averageBristol);
+    //console.log(averageBristol);
 
     const allTypeMeans = [];
     for (i=0;i<Object.keys(bristolData).length;i++){
@@ -61,7 +70,7 @@ function loadEntries() {
     const allDays = Object.keys(groupedEntries);
     const allValues = Object.values(groupedEntries).map(entries => entries.length);
     
-    console.log(allTypeMeans);
+    //console.log(allTypeMeans);
 
     // Keep only the last n entries
     const lastDays = allDays.reverse().slice(-displayRange);
